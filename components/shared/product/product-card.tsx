@@ -1,8 +1,19 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import ProductPrice from "./product-price";
+//create interface for product
+interface Product {
+  slug: string;
+  name: string;
+  brand: string;
+  price: number;
+  stock: number;
+  rating?: number;
+  images?: string[];
+}
 
-const ProductCard = ({ product }: { product: any }) => {
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link href={`/products/${product.slug}`}>
       <Card className="w-full h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
@@ -21,7 +32,7 @@ const ProductCard = ({ product }: { product: any }) => {
           <h3 className="text-lg font-semibold truncate">{product.name}</h3>
           <p className="text-gray-600 text-sm mb-2">{product.brand}</p>
           <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">${product.price}</span>
+             <ProductPrice price = {product.price} stock={product.stock} />
             {product.rating && (
               <span className="text-sm text-yellow-500">★ {product.rating}</span>
             )}
@@ -31,4 +42,5 @@ const ProductCard = ({ product }: { product: any }) => {
     </Link>
   );
 };
+
 export default ProductCard;
