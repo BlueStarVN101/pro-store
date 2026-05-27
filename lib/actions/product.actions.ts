@@ -2,7 +2,6 @@
 
 import { prisma } from "../../db/prisma";
 
-
 // Get latest products
 export async function getLatestProducts() {
   const data = await prisma.product.findMany({
@@ -18,4 +17,11 @@ export async function getLatestProducts() {
     price: Number(product.price),
     rating: Number(product.rating),
   }));
+}
+
+// Get product by slug
+export async function getProductBySlug(slug: string) {
+  return await prisma.product.findFirst({
+    where: { slug },
+  });
 }

@@ -8,7 +8,7 @@ import { Product } from "@/types";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <Link href={`/products/${product.slug}`}>
+    <Link href={`/product/${product.slug}`}>
       <Card className="w-full h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
         <CardHeader className="p-0">
           <div className="relative w-full h-48 bg-gray-200">
