@@ -1,6 +1,7 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../prisma";
+
 
 // Get latest products
 export async function getLatestProducts() {
@@ -11,5 +12,10 @@ export async function getLatestProducts() {
     },
   });
 
-  return data;
+  return data.map((product) => ({
+    ...product,
+    images: product.images as string[],
+    price: Number(product.price),
+    rating: Number(product.rating),
+  }));
 }
